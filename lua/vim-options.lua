@@ -41,5 +41,18 @@ vim.keymap.set("n", "]b", ":bnext<CR>", {})
 vim.keymap.set("n", "[B", ":bfirst<CR>", {})
 vim.keymap.set("n", "]B", ":blast<CR>", {})
 
+vim.keymap.set("n", "[q", ":cprevious<CR>", {})
+vim.keymap.set("n", "]q", ":cnext<<CR>", {})
+vim.keymap.set("n", "[Q", ":cfirst<<CR>", {})
+vim.keymap.set("n", "]Q", ":clast<CR>", {})
+vim.keymap.set("n", "]u", ":cnewer<CR>", {})
+vim.keymap.set("n", "[u", ":colder<CR>", {})
+
+vim.keymap.set("n", "[l", ":lprevious<CR>", {})
+vim.keymap.set("n", "]l", ":lnext<<CR>", {})
+vim.keymap.set("n", "[L", ":lfirst<<CR>", {})
+vim.keymap.set("n", "]L", ":llast<CR>", {})
+
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+
