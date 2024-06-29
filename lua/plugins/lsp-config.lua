@@ -22,7 +22,7 @@ return {
 					"html",
 					"dockerls",
 					"marksman", --markdown
-					"kotlin_language_server",
+					-- "kotlin_language_server",
 				},
 			})
 		end,
@@ -37,7 +37,8 @@ return {
 					"stylua",
 					"java-debug-adapter",
 					"java-test",
-					"kotlin-debug-adapter",
+					-- "kotlin-debug-adapter",
+					-- "ktlint",
 				},
 			})
 		end,
@@ -53,6 +54,10 @@ return {
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
+
+			-- lspconfig.kotlin_language_server.setup({
+			--		capabilities = capabilities,
+			-- })
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
