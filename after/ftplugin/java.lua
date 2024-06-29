@@ -11,6 +11,19 @@ end
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
+-- Needed for debugging
+local bundles = {
+	vim.fn.glob(
+		home_path .. "/.config/.local/share/nvim/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar"
+	),
+}
+
+-- Needed for running/debugging unit tests
+vim.list_extend(
+	bundles,
+	vim.split(vim.fn.glob(home_path .. "/.config/.local/share/nvim/mason/share/java-test/*.jar", 1), "\n")
+)
+
 local config = {}
 
 config.cmd = {
@@ -52,7 +65,7 @@ config.root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", 
 
 config.settings = {
 	java = {
-		home = home_path .. "/.sdkman/candidates/java/17.0.11-tem",
+		home = home_path .. "/.sdkman/candidates/java/21.0.3-tem",
 		redhat = {
 			telemetry = { enabled = false },
 		},
@@ -129,7 +142,8 @@ config.settings = {
 }
 
 config.init_options = {
-	bundles = {},
+	-- References the bundles defined above to support Debugging and Unit Testing
+	bundles = bundles,
 	extendedClientCapabilities = extendedClientCapabilities,
 }
 
@@ -215,25 +229,32 @@ config.on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>jdm", function()
 		jdtls.test_nearest_method()
 	end, { desc = "java debug nearest test method" })
+
 	vim.keymap.set("n", "<leader>jdc", function()
 		jdtls.test_class()
 	end, { desc = "java debug nearest test class" })
 
 	vim.keymap.set("n", "<leader>jr", "<cmd>JdtWipeDataAndRestart<CR>", { desc = "restart jdtls" })
+
+	-- Needed for debugging
+	jdtls.setup_dap({ hotcodereplace = "auto" })
+	require("jdtls.dap").setup_dap_main_class_configs()
 end
 
-local capabilities = {
-	workspace = {
-		configuration = true,
-	},
-	textDocument = {
-		completion = {
-			completionItem = {
-				snippetSupport = true,
-			},
-		},
-	},
-}
-config.capabilities = capabilities
+-- local capabilities = {
+-- 	workspace = {
+-- 		configuration = true,
+-- 	},
+-- 	textDocument = {
+-- 		completion = {
+-- 			completionItem = {
+-- 				snippetSupport = true,
+-- 			},
+-- 		},
+-- 	},
+-- }
+--config.capabilities = capabilities
+-- OR
+config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 require("jdtls").start_or_attach(config)
