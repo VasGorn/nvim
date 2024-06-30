@@ -22,7 +22,7 @@ return {
 					"html",
 					"dockerls",
 					"marksman", --markdown
-					"kotlin_language_server",
+					--"kotlin_language_server",
 				},
 			})
 		end,
@@ -37,7 +37,8 @@ return {
 					"stylua",
 					"java-debug-adapter",
 					"java-test",
-					"kotlin-debug-adapter",
+					-- "kotlin-debug-adapter",
+					-- "ktlint",
 				},
 			})
 		end,
