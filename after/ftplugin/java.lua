@@ -65,7 +65,7 @@ config.root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", 
 
 config.settings = {
 	java = {
-		home = home_path .. "/.sdkman/candidates/java/21.0.3-tem",
+		home = home_path .. "/.sdkman/candidates/java/21.0.4-tem",
 		redhat = {
 			telemetry = { enabled = false },
 		},
@@ -81,6 +81,14 @@ config.settings = {
 		eclipse = { downloadSources = true },
 		referencesCodeLens = { enabled = true },
 		references = { includeDecompiledSources = true },
+		-- Setup automatical package import oranization on file save
+		saveActions = {
+			organizeImports = true,
+		},
+		-- Use the fernflower decompiler when using the javap command to decompile byte code back to java code
+		contentProvider = {
+			preferred = "fernflower",
+		},
 		inlayHints = {
 			parameterNames = {
 				enabled = "all", -- literals, all, none
@@ -120,15 +128,15 @@ config.settings = {
 			runtimes = {
 				{
 					name = "JavaSE-11",
-					path = home_path .. "/.sdkman/candidates/java/11.0.23-tem",
+					path = home_path .. "/.sdkman/candidates/java/11.0.24-tem",
 				},
 				{
 					name = "JavaSE-17",
-					path = home_path .. "/.sdkman/candidates/java/17.0.11-tem",
+					path = home_path .. "/.sdkman/candidates/java/17.0.12-tem",
 				},
 				{
 					name = "JavaSE-21",
-					path = home_path .. "/.sdkman/candidates/java/21.0.3-tem",
+					path = home_path .. "/.sdkman/candidates/java/21.0.4-tem",
 				},
 			},
 		},
@@ -241,20 +249,21 @@ config.on_attach = function(client, bufnr)
 	require("jdtls.dap").setup_dap_main_class_configs()
 end
 
--- local capabilities = {
--- 	workspace = {
--- 		configuration = true,
--- 	},
--- 	textDocument = {
--- 		completion = {
--- 			completionItem = {
--- 				snippetSupport = true,
--- 			},
--- 		},
--- 	},
--- }
---config.capabilities = capabilities
--- OR
-config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- Tell our JDTLS language features it is capable of
+local capabilities = {
+	workspace = {
+		configuration = true,
+	},
+	textDocument = {
+		completion = {
+			snippetSupport = false,
+		},
+	},
+}
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+for k, v in pairs(lsp_capabilities) do
+	capabilities[k] = v
+end
+config.capabilities = capabilities
 
 require("jdtls").start_or_attach(config)
