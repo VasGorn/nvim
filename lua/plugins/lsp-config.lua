@@ -55,6 +55,17 @@ return {
 				capabilities = capabilities,
 			})
 
+			lspconfig.lemminx.setup({
+				capabilities = capabilities,
+				settings = {
+					xml = {
+						server = {
+							workDir = "~/.cache/lemminx",
+						},
+					},
+				},
+			})
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
