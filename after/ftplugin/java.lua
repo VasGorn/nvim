@@ -33,7 +33,7 @@ config.cmd = {
 	"-Declipse.product=org.eclipse.jdt.ls.core.product",
 	"-Dlog.protocol=true",
 	"-Dlog.level=ALL",
-	"-Xmx1g",
+	"-Xmx500m",
 
 	--[[
         "-XX:+UseParallelGC",
@@ -65,9 +65,9 @@ config.root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", 
 
 config.settings = {
 	java = {
-		home = home_path .. "/.sdkman/candidates/java/21.0.4-tem",
+		home = home_path .. "/.sdkman/candidates/java/current",
 		redhat = {
-			telemetry = { enabled = false },
+			telemetry = { enabled = true },
 		},
 		sources = {
 			organizeImports = {
@@ -83,7 +83,7 @@ config.settings = {
 		references = { includeDecompiledSources = true },
 		-- Setup automatical package import oranization on file save
 		saveActions = {
-			organizeImports = true,
+			organizeImports = false,
 		},
 		-- Use the fernflower decompiler when using the javap command to decompile byte code back to java code
 		contentProvider = {

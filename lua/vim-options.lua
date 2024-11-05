@@ -22,13 +22,13 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 vim.opt.signcolumn = "yes"
-vim.opt.clipboard = "unnamedplus"
+--vim.opt.clipboard = "unnamedplus"
 
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
---vim.opt.undofile=true
+-- vim.opt.undofile=true
 vim.opt.breakindent = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 700
@@ -39,7 +39,14 @@ vim.opt.sidescrolloff = 8
 
 vim.opt.title = true
 vim.opt.wrap = true
-vim.opt.textwidth = 90
+vim.opt.colorcolumn = { 123 }
+vim.opt.textwidth = 123
+
+-- spelling check
+vim.opt.spell = true
+vim.opt.spelllang = { "en_us" }
+vim.opt.spelloptions:append({ "camel" })
+vim.opt.spellcapcheck = ""
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
