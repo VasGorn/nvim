@@ -10,6 +10,6 @@ return {
 				--null_ls.builtins.completion.spell,
 			},
 		})
-		vim.keymap.set("n", "<leader>oc", vim.lsp.buf.format, {})
+		vim.keymap.set({ "n", "v" }, "<leader>oc", vim.lsp.buf.format, {})
 	end,
 }
