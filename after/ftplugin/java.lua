@@ -27,7 +27,7 @@ vim.list_extend(
 local config = {}
 
 config.cmd = {
-	"java",
+	home_path .. "/.sdkman/candidates/java/23.0.1-tem/bin/java",
 	"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 	"-Dosgi.bundles.defaultStartLevel=4",
 	"-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -53,15 +53,15 @@ config.cmd = {
 	"-javaagent:" .. home_path .. "/.config/.local/share/nvim/mason/packages/jdtls/lombok.jar",
 	"-jar",
 	vim.fn.glob(
-		home_path .. "/.config/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"
+		home_path .. "/.local/share/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_*.jar"
 	),
 	"-configuration",
-	home_path .. "/.config/.local/share/nvim/mason/packages/jdtls/config_linux",
+	home_path .. "/.local/share/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/config_linux",
 	"-data",
 	workspace_dir,
 }
 
-config.root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+config.root_dir = vim.fs.root(0, {".git", "mvnw", "gradlew"})
 
 config.settings = {
 	java = {

@@ -27,4 +27,4 @@ function M.mark_file()
 	vim.notify("󱡅  marked file")
 end
 
-return M
+return {}

@@ -77,6 +77,7 @@ return {
 					--  This is where a variable was first declared, or where a function is defined, etc.
 					--  To jump back, press <C-t>.
 					map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 					map("gr", builtin.lsp_references, "[G]oto [R]eferences")
 					map("gi", builtin.lsp_implementations, "[G]oto [I]mplementation")
 					map("<leader>D", builtin.lsp_type_definitions, "Type [D]efinition")
@@ -86,7 +87,6 @@ return {
 					map("<leader>a", vim.lsp.buf.code_action, "[C]ode [A]ction")
 					map("<leader>k", vim.lsp.buf.hover, "Hover Documentation")
 					map("<C-s>", vim.lsp.buf.signature_help, "Help with signature")
-					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 					-- The following two autocommands are used to highlight references of the
 					-- word under your cursor when your cursor rests there for a little while.
