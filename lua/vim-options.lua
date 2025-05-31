@@ -67,10 +67,10 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv")
 
 -- change navigation between splits
-vim.keymap.set("n", "<c-j>", "<c-w><c-j>")
-vim.keymap.set("n", "<c-k>", "<c-w><c-k>")
-vim.keymap.set("n", "<c-l>", "<c-w><c-l>")
-vim.keymap.set("n", "<c-h>", "<c-w><c-h>")
+-- vim.keymap.set("n", "<c-j>", "<c-w><c-j>")
+-- vim.keymap.set("n", "<c-k>", "<c-w><c-k>")
+-- vim.keymap.set("n", "<c-l>", "<c-w><c-l>")
+-- vim.keymap.set("n", "<c-h>", "<c-w><c-h>")
 
 vim.keymap.set("n", "<M-,>", "<c-w>5<")
 vim.keymap.set("n", "<M-.>", "<c-w>5>")
