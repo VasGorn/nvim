@@ -33,7 +33,13 @@ config.cmd = {
 	"-Declipse.product=org.eclipse.jdt.ls.core.product",
 	"-Dlog.protocol=true",
 	"-Dlog.level=ALL",
-	"-Xmx500m",
+    "-XX:+UseParallelGC",
+    "-XX:GCTimeRatio=4",
+    "-XX:AdaptiveSizePolicyWeight=90",
+    "-Dsun.zip.disableMemoryMapping=true",
+    "-Xmx1500m",
+    "-Xms700m",
+    "-Xlog:disable",
 
 	--[[
         "-XX:+UseParallelGC",
@@ -53,10 +59,10 @@ config.cmd = {
 	"-javaagent:" .. home_path .. "/.config/.local/share/nvim/mason/packages/jdtls/lombok.jar",
 	"-jar",
 	vim.fn.glob(
-		home_path .. "/.local/share/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_*.jar"
+		home_path .. "/.config/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"
 	),
 	"-configuration",
-	home_path .. "/.local/share/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/config_linux",
+	home_path .. "/.config/.local/share/nvim/mason/packages/jdtls/config_linux",
 	"-data",
 	workspace_dir,
 }
