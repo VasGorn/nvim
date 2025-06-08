@@ -1,9 +1,9 @@
 return {
 	{
 		"L3MON4D3/LuaSnip",
-        build = (function()
-          return 'make install_jsregexp'
-        end)(),
+		build = (function()
+			return "make install_jsregexp"
+		end)(),
 		dependencies = {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
@@ -64,6 +64,12 @@ return {
 					{ name = "buffer" },
 				}),
 			})
+            cmp.setup.filetype({ "sql" }, {
+                sources = {
+                    { name = "vim-dadbod-completion" },
+                    { name = "buffer" },
+                },
+            })
 		end,
 	},
 }

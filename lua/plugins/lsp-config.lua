@@ -35,6 +35,7 @@ return {
 				-- Install these linters, formatters, debuggers automatically
 				ensure_installed = {
 					"stylua",
+					"sqlfluff",
 					"java-debug-adapter",
 					"java-test",
 					-- "kotlin-debug-adapter",
