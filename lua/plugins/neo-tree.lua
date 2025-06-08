@@ -6,6 +6,10 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 	},
+	lazy = false,
+    ---@module "neo-tree"
+	---@type neotree.Config?
+	opts = {},
 	config = function()
 		vim.keymap.set("n", "<leader>e", ":Neotree<CR>", {})
 	end,
