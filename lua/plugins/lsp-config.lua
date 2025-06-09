@@ -46,9 +46,21 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = {
+			{ "saghen/blink.cmp" },
+			{
+				"folke/lazydev.nvim",
+				ft = "lua",
+				opts = {
+					library = {
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
+				},
+			},
+		},
 		lazy = false,
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			local lspconfig = require("lspconfig")
 			local builtin = require("telescope.builtin")
 
