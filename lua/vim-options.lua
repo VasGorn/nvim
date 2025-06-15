@@ -5,6 +5,8 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.syntax = "ON"
 
+vim.opt.conceallevel = 1
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 
