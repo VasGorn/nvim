@@ -1,13 +1,13 @@
 return {
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		lazy = false,
 		config = function()
 			require("mason").setup()
 		end,
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		lazy = false,
 		config = function()
 			require("mason-lspconfig").setup({
@@ -23,6 +23,15 @@ return {
 					"dockerls",
 					"marksman", --markdown
 					--"kotlin_language_server",
+					"clangd",
+				},
+				automatic_enable = {
+					exclude = {
+						"jdtls",
+						"lua_ls",
+						"clangd",
+						"lemminx",
+					},
 				},
 			})
 		end,
@@ -40,6 +49,7 @@ return {
 					"java-test",
 					-- "kotlin-debug-adapter",
 					-- "ktlint",
+					"clang-format",
 				},
 			})
 		end,
@@ -77,6 +87,10 @@ return {
 						},
 					},
 				},
+			})
+
+			lspconfig.clangd.setup({
+				capabilities = capabilities,
 			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
