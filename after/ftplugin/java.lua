@@ -27,7 +27,7 @@ vim.list_extend(
 local config = {}
 
 config.cmd = {
-	home_path .. "/.sdkman/candidates/java/23.0.1-tem/bin/java",
+	home_path .. "/.sdkman/candidates/java/24.0.1-graal/bin/java",
 	"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 	"-Dosgi.bundles.defaultStartLevel=4",
 	"-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -133,16 +133,16 @@ config.settings = {
 		configuration = {
 			runtimes = {
 				{
-					name = "JavaSE-11",
-					path = home_path .. "/.sdkman/candidates/java/11.0.24-tem",
-				},
-				{
 					name = "JavaSE-17",
-					path = home_path .. "/.sdkman/candidates/java/17.0.12-tem",
+					path = home_path .. "/.sdkman/candidates/java/17.0.12-graal",
 				},
 				{
 					name = "JavaSE-21",
-					path = home_path .. "/.sdkman/candidates/java/21.0.4-tem",
+					path = home_path .. "/.sdkman/candidates/java/21.0.7-graal",
+				},
+				{
+					name = "JavaSE-24",
+					path = home_path .. "/.sdkman/candidates/java/24.0.1-graal",
 				},
 			},
 		},
