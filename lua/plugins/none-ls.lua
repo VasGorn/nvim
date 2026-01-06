@@ -19,6 +19,14 @@ return {
 					-- extra_args = { "--dialect", "tsql" }, -- change to your dialect
 					extra_args = { "--dialect", "mysql" }, -- change to your dialect
 				}),
+                null_ls.builtins.formatting.gofumpt,
+                null_ls.builtins.formatting.goimports_reviser.with({
+                    extra_args = {
+                        "-rm-unused",
+                        "-set-alias",
+                    },
+                }),
+                null_ls.builtins.formatting.golines,
 			},
 		})
 		vim.keymap.set({ "n", "v" }, "<leader>oc", vim.lsp.buf.format, {})
