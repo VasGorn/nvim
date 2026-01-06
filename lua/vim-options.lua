@@ -4,6 +4,19 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.syntax = "ON"
+vim.opt.winborder = "rounded"
+vim.opt.cursorcolumn = false
+
+vim.opt.list = true
+vim.opt.listchars = {
+    eol = "¬",
+    trail = "~",
+    extends = ">",
+    precedes = "<",
+    tab = "» ",
+    nbsp = "␣",
+    space = "·",
+}
 
 vim.opt.conceallevel = 1
 
@@ -30,7 +43,7 @@ vim.opt.incsearch = true
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- vim.opt.undofile=true
+vim.opt.undofile=true
 vim.opt.breakindent = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 700

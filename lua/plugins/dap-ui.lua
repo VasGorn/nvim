@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		"mfussenegger/nvim-dap",
 		"nvim-neotest/nvim-nio",
+        "leoluz/nvim-dap-go",
 	},
 	keys = {
 		"<leader>Du",
@@ -14,6 +15,7 @@ return {
 		local dapui = require("dapui")
 
 		dapui.setup()
+        require("dap-go").setup()
 
 		vim.keymap.set("n", "<leader>Du", function()
 			dapui.toggle({ layout = 2 })

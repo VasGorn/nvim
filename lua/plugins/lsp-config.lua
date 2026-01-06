@@ -12,8 +12,6 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"groovyls",
-					"gradle_ls",
 					"bashls",
 					"lua_ls",
 					"jdtls",
@@ -24,6 +22,7 @@ return {
 					"marksman", --markdown
 					--"kotlin_language_server",
 					"clangd",
+					"gopls",
 				},
 				automatic_enable = {
 					exclude = {
@@ -31,6 +30,7 @@ return {
 						"lua_ls",
 						"clangd",
 						"lemminx",
+						"gopls",
 					},
 				},
 			})
@@ -50,6 +50,10 @@ return {
 					-- "kotlin-debug-adapter",
 					-- "ktlint",
 					"clang-format",
+                    "gofumpt",
+                    -- "goimports_reviser",
+                    "golines",
+                    "delve", -- go debugger
 				},
 			})
 		end,
@@ -71,27 +75,35 @@ return {
 		lazy = false,
 		config = function()
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
-			local lspconfig = require("lspconfig")
 			local builtin = require("telescope.builtin")
 
-			lspconfig.lua_ls.setup({
+			vim.lsp.config("*", {
 				capabilities = capabilities,
 			})
 
-			lspconfig.lemminx.setup({
-				capabilities = capabilities,
+			vim.lsp.config("lemminx", {
 				settings = {
 					xml = {
 						server = {
-							workDir = "~/.cache/lemminx",
+							workDir = vim.fn.expand("~/.cache/lemminx"),
 						},
 					},
 				},
 			})
 
-			lspconfig.clangd.setup({
-				capabilities = capabilities,
-			})
+            vim.lsp.config("gopls", {
+                filetypes = { "go", "gomod", "gowork", "gotmpl" },
+                settings = {
+                    env = {
+                        GOEXPERIMENT = "rangefunc",
+                    },
+                    formatting = {
+                        gofumpt = true,
+                    },
+                },
+            })
+
+			vim.lsp.enable({ "lua_ls", "lemminx", "clangd", "gopls" })
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
@@ -103,7 +115,7 @@ return {
 					-- Jump to the definition of the word under your cursor.
 					--  This is where a variable was first declared, or where a function is defined, etc.
 					--  To jump back, press <C-t>.
-					map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+					map("gd", builtin.lsp_definitions, "[G]oto [D]efinition")
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 					map("gr", builtin.lsp_references, "[G]oto [R]eferences")
 					map("gi", builtin.lsp_implementations, "[G]oto [I]mplementation")
