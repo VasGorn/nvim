@@ -51,7 +51,7 @@ return {
 					-- "ktlint",
 					"clang-format",
                     "gofumpt",
-                    -- "goimports_reviser",
+                    "goimports-reviser",
                     "golines",
                     "delve", -- go debugger
 				},
